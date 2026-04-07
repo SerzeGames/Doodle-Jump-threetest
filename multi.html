@@ -1428,6 +1428,7 @@ function startSearch() {
   document.getElementById('lobbyStatus').textContent = 'Connexion...';
   document.getElementById('btnSearch').disabled = true;
   connected = false;
+  conns = [];
   showScreen('waitingScreen');
   tryMatchmaking();
 }
@@ -1471,14 +1472,14 @@ function tryMatchmaking() {
       // Close failed connections after timeout
       setTimeout(() => {
         if(!joined && c.open) { try{c.close();}catch(e){} }
-      }, 3500);
+      }, 1500);
     }
 
-    // Phase 2: If no room found after 4s, become host
+    // Phase 2: If no room found after 2s, become host
     setTimeout(() => {
       if(joined || connected) return;
       becomeHost();
-    }, 4000);
+    }, 2000);
   });
 }
 
